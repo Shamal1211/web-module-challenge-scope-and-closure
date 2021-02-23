@@ -29,10 +29,14 @@ console.log(processFirstItem(['foo','bar'],function(str){return str+str}));
   
   1. What is the difference between counter1 and counter2?
   
+  --counter1 resets when called
   2. Which of the two uses a closure? How can you tell?
   
+  
+  --counter1. There's 2 functions within each other.
+  
   3. In what scenario would the counter1 code be preferable? In what scenario would 
-     counter2 be better?  
+     ----counter2 be better?  counter1 would work for each inning and counter2 works for the whole game
 */
 
 // counter1 code
@@ -63,7 +67,7 @@ NOTE: This will be a callback function for the tasks below
 */
 
 function inning(/*Code Here*/){
-    /*Code Here*/
+    return Math.floor(Math.random())*2
 }
 
 
@@ -81,8 +85,19 @@ Use the finalScore function below to do the following:
 }
 */ 
 
-function finalScore(/*code Here*/){
-  /*Code Here*/
+function finalScore(inning1, inning2){
+  let home = 0;
+  let away = 0;
+    for (let i=0; i < inning2; i++){
+      home = inning1() + home;
+      away = inning1() + away;
+    }
+    const score = {
+      home: home,
+      away: away
+    }
+
+    return score;
 }
 
 /* ⚾️⚾️⚾️ Task 4: getInningScore() ⚾️⚾️⚾️
@@ -90,8 +105,17 @@ Use the getInningScore() function below to do the following:
   1. Receive a callback function - you will pass in the inning function from task 2 as your argument 
   2. Return an object with a score for home and a score for away that populates from invoking the inning callback function */
 
-function getInningScore(/*Your Code Here */) {
-  /*Your Code Here */
+function getInningScore(inning) {
+  var home = 0;
+  var away = 0;
+    home = inning() + home;
+    away = inning() + away 
+
+    const score = {
+      Home: home,
+      Away: away
+    }
+    return score;
 }
 
 
@@ -136,8 +160,28 @@ Use the scoreboard function below to do the following:
 ]  
   */
 
-function scoreboard(/* CODE HERE */) {
-  /* CODE HERE */
+function scoreboard(getInningScore, inning2, inning3) {
+  var array = []
+  var home = 0;
+  var away = 0;
+  var homeTotal = 0;
+  var homeTotal =0;
+  for ( let i=0; i<inning; i++) {
+    home = inning();
+    away = inning();
+    array.push(
+      `Inning ${i+1}: Homr ${home} - Away ${away}`
+    );
+
+    homeTotal = homeTotal + homeScore;
+    awayTotal = awayTotal + awayScore;
+  }
+  if (homeTotal === awayTotal) {
+    array.push(`This game will require extra innings: Away ${away} - Home ${home}`);
+    return array;
+  } else {
+    array.push(`Final Score: Away ${away} - Home ${home}`);
+    return array;
 }
 
 
